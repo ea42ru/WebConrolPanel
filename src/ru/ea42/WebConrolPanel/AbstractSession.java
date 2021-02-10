@@ -8,6 +8,5 @@ public abstract class AbstractSession {
     }
 
     public void addForm(Ui_Abstract ui_abstract) {
-
     }
 }
