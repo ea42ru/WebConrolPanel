@@ -31,11 +31,6 @@ public class Demo_Work implements Runnable {
         wsp.start();
     }
 
-    public void stop() {
-        Demo_Param.setIsWork(false);
-        wsp.stop();
-    }
-
     public void waiting() {
         while (Demo_Param.getIsWork()) {
             try {
@@ -43,6 +38,12 @@ public class Demo_Work implements Runnable {
             } catch (InterruptedException e) {
             }
         }
+        stop();
+    }
+
+    public void stop() {
+        Demo_Param.setIsWork(false);
         wsp.stop();
+        wsp = null;
     }
 }

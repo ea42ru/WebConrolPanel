@@ -6,21 +6,32 @@ import java.net.Socket;
 
 public class WCP implements Runnable {
     public int Port = 8282;
-    public int MaxSocketProcessor = 50;
+    public int MaxSocketProcessor = 2;
     public int MaxSession = 10;
-    private Class<?> SessionClass = null;
+    public int MaxBufSocket = 100;
     private boolean IsWork = true;
+    private Class<?> SessionClass = null;
     private ServerSocket SS = null;
-    private SocketProcessor[] Mss;
+    private SocketProcessor[] Msp;
     private AbstractSession[] Mses;
+    private BufSocket bufSocket;
 
     public WCP(Class<?> sessionClass) {
-        SessionClass = sessionClass;
+        this.SessionClass = sessionClass;
     }
 
     public synchronized void start() {
-        Mss = new SocketProcessor[MaxSocketProcessor];
+        bufSocket = new BufSocket(MaxBufSocket);
         Mses = new AbstractSession[MaxSession];
+        for (int i = 0; i < MaxSession; i++) {
+            Mses[i] = null;
+        }
+
+        Msp = new SocketProcessor[MaxSocketProcessor];
+        for (int i = 0; i < MaxSocketProcessor; i++) {
+            Msp[i] = new SocketProcessor(bufSocket, Mses, SessionClass);
+        }
+
         if (SS == null) {
             try {
                 SS = new ServerSocket(Port);
@@ -61,25 +72,14 @@ public class WCP implements Runnable {
             if (!IsWorked()) {
                 break;
             }
-
-            System.err.println("Client accepted");
-            //new Thread(new SocketProcessor(s)).start();
-
-            for (int i = 0; i < MaxSocketProcessor; i++) {
-                if (Mss[i] == null) {
-                    Mss[i] = new SocketProcessor(Mses, SessionClass);
-                    Mss[i].handleSoc(Scl);
-                    continue;
-                }
-                if (Mss[i].isAviable()) {
-                    Mss[i].handleSoc(Scl);
-                    continue;
-                }
+            if (Scl != null) {
+                bufSocket.addSocket(Scl);
             }
         }
 
         for (int i = 0; i < MaxSocketProcessor; i++) {
-            Mss[i] = null;
+            Msp[i].stop();
+            Msp[i] = null;
         }
         for (int i = 0; i < MaxSession; i++) {
             Mses[i] = null;
