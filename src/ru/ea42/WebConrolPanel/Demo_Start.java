@@ -5,7 +5,7 @@ public class Demo_Start {
         WCP wsp = new WCP(Demo_Session.class);
         wsp.Port = 8080;
 
-        Demo_Work dw=new Demo_Work(wsp);
+        Demo_Work dw = new Demo_Work(wsp);
         dw.start();
         dw.waiting();
     }
