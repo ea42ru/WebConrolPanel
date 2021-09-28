@@ -1,0 +1,97 @@
+﻿==================== Команды серверу ====================
+ReqQv
+  получить очередное обновление
+
+ScrinStop
+  обработка закрытия страницы браузера
+
+==================== Команды браузеру ====================
+Redirect
+  перейти по урлу
+
+RefScreen ??? (RefWidget id=app)
+  перерисовать всё окно приложения
+
+RefWidget 
+  изменть элемент по id
+  
+  Form 
+    изменить форму элемента  ("RefWidget" "Form" "id")
+  
+  Val
+    изменить содержимое элемента
+  
+  SetHTML
+    изменить содержимое элемента
+  
+
+============================================================
+{result: {"command": RefWidget, "type": "SetHTML", "data": "12:55:87"}, "error": null, "id": 1}
+
+
+{padding : 150, rows : [{}, {view : "label", label : "Демо: Web Remote Control", align : "left"}, {}] }
+
+
+============================================================
+{   "id" : "app", 
+    "padding" : 60, 
+    "rows" : [ {
+				"view" : "toolbar",
+				"height" : 56,
+				"padding" : 15,
+				"cols" : [ {
+					"view" : "label",
+					"label" : "Демо: Web Remote Control",
+					"align" : "left"
+				}, {}, {
+					"view" : "template",
+					"id" : "ping",
+					"width" : 110,
+					"align" : "right",
+					"css" : "time-template"
+				}, {
+					"view" : "template",
+					"id" : "time",
+					"width" : 85,
+					"align" : "right",
+					"css" : "time-template"
+				} ]
+			},
+
+			{
+				"cols" : [ {
+					"view" : "list",
+					"id" : "list1",
+					"template" : "#title#",
+					"width" : 300,
+					"select" : true,
+					"data" : [ {
+						"id" : 1,
+						"title" : "О программе"
+					}, {
+						"id" : 2,
+						"title" : "Управление"
+					}, {
+						"id" : 3,
+						"title" : "Таймер"
+					}, {
+						"id" : 4,
+						"title" : "Чат"
+					} ]
+				},
+
+				{
+					"type" : "clean",
+					"rows" : [ {
+						"id" : "views",
+						"cells" : [ {
+							"view" : "template",
+							"id" : "ajaxResponceText",
+							"template" : "Pick a film from the list!"
+						} ]
+					} ]
+				}
+			]
+		}
+	]
+}
