@@ -5,12 +5,12 @@ import org.eclipse.jetty.server.handler.ResourceHandler;
 
 public class Demo_Start {
 	public static void main(String[] args) throws Exception {
-		// embWRC.Port=8183; //меняем порт, если надо
+		// embWRC.Port=8183; //РјРµРЅСЏРµРј РїРѕСЂС‚, РµСЃР»Рё РЅР°РґРѕ
 		embWRC.Init();
-		// коструируем интерфейс в Demo_Session, отнаследаваным от AbstractSession
+		// РєРѕСЃС‚СЂСѓРёСЂСѓРµРј РёРЅС‚РµСЂС„РµР№СЃ РІ Demo_Session, РѕС‚РЅР°СЃР»РµРґР°РІР°РЅС‹Рј РѕС‚ AbstractSession
 		embWRC.sm.SessionClass = Demo_Session.class;
 
-		// можно добавить свой обработчик к встроенному веб серверу, если надо
+		// РјРѕР¶РЅРѕ РґРѕР±Р°РІРёС‚СЊ СЃРІРѕР№ РѕР±СЂР°Р±РѕС‚С‡РёРє Рє РІСЃС‚СЂРѕРµРЅРЅРѕРјСѓ РІРµР± СЃРµСЂРІРµСЂСѓ, РµСЃР»Рё РЅР°РґРѕ
 		// ContextHandler statHandl = new ContextHandler();
 		// statHandl.setContextPath("./demo_web/");
 		// statHandl.setResourceBase("./demo_web/");
