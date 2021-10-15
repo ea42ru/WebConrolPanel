@@ -1,29 +1,29 @@
-package ru.ea42.WebConrolPanel;
+package ru.ea42.WebRemoteControl;
 
 public class UiLabel extends Ui_Abstract {
-    public UiLabel(Ui_Abstract Owner, String value) {
-        super(Owner);
-        this.Value = value;
-    }
+	public UiLabel(Ui_Abstract Owner, String value) {
+		super(Owner);
+		this.Value = value;
+	}
 
-    public String Value;
+	public String Value;
 
-    @Override
-    public String getView() {
-        return "label";
-    }
+	@Override
+	public String getView() {
+		return "label";
+	}
 
-    @Override
-    protected String getStrJsonSub() {
-        return "\"label\": \"" + Value + "\"";
-    }
+	@Override
+	protected String getStrJsonSub() {
+		return "\"label\": \"" + Value + "\"";
+	}
 
-    @Override
-    protected String getUiJsonSub(String idUi) {
-        return "";
-    }
+	@Override
+	protected String getUiJsonSub(String idUi) {
+		return "";
+	}
 
-    @Override
-    public void AddUi(Ui_Abstract ui) {
-    }
+	@Override
+	public void AddUi(Ui_Abstract ui) {
+	}
 }

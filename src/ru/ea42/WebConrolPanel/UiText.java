@@ -1,30 +1,30 @@
-package ru.ea42.WebConrolPanel;
+package ru.ea42.WebRemoteControl;
 
 public class UiText extends Ui_Abstract {
-    public UiText(Ui_Abstract Owner, String label) {
-        super(Owner);
-        this.Label = label;
-    }
+	public UiText(Ui_Abstract Owner, String label) {
+		super(Owner);
+		this.Label = label;
+	}
 
-    public String Value = "value";
-    public String Label = "label";
+	public String Value = "value";
+	public String Label = "label";
 
-    @Override
-    public String getView() {
-        return "text";
-    }
+	@Override
+	public String getView() {
+		return "text";
+	}
 
-    @Override
-    protected String getStrJsonSub() {
-        return "\"value\": \"" + Value + "\", \"label\": \"" + Label + "\"";
-    }
+	@Override
+	protected String getStrJsonSub() {
+		return "\"value\": \"" + Value + "\", \"label\": \"" + Label + "\"";
+	}
 
-    @Override
-    protected String getUiJsonSub(String idUi) {
-        return "";
-    }
+	@Override
+	protected String getUiJsonSub(String idUi) {
+		return "";
+	}
 
-    @Override
-    public void AddUi(Ui_Abstract ui) {
-    }
+	@Override
+	public void AddUi(Ui_Abstract ui) {
+	}
 }

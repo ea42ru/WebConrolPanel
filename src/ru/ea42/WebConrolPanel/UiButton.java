@@ -1,29 +1,30 @@
-package ru.ea42.WebConrolPanel;
+package ru.ea42.WebRemoteControl;
 
 public class UiButton extends Ui_Abstract {
-    public UiButton(Ui_Abstract Owner, String value) {
-        super(Owner);
-        this.Value = value;
-    }
 
-    public String Value;
+	public UiButton(Ui_Abstract Owner, String value) {
+		super(Owner);
+		this.Value = value;
+	}
 
-    @Override
-    public String getView() {
-        return "button";
-    }
+	public String Value;
 
-    @Override
-    protected String getStrJsonSub() {
-        return "\"label\": \"" + Value + "\"";
-    }
+	@Override
+	public String getView() {
+		return "button";
+	}
 
-    @Override
-    protected String getUiJsonSub(String idUi) {
-        return "";
-    }
+	@Override
+	protected String getStrJsonSub() {
+		return "\"label\": \"" + Value + "\"";
+	}
 
-    @Override
-    public void AddUi(Ui_Abstract ui) {
-    }
+	@Override
+	protected String getUiJsonSub(String idUi) {
+		return "";
+	}
+
+	@Override
+	public void AddUi(Ui_Abstract ui) {
+	}
 }
