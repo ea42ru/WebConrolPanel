@@ -11,8 +11,8 @@ public class WarningSession extends AbstractSession {
 	@Override
 	public String RefWidgetForm(String idWidget) {
 		String sForm = "{\"id\": \"app\", \"cols\": [{}, {\"rows\": [{}, "
-				+ "{\"view\": \"text\", \"height\": 50, \"width\": 230, \"value\": \"(с) WebRemoteControl v0.10\"}, "
-				+ "{\"view\": \"text\", \"height\" : 50, \"width\": 230, \"value\": \"не определен класс сессии...\"}, "
+				+ "{\"view\": \"text\", \"height\": 50, \"width\": 230, \"value\": \"(c) WebRemoteControl v0.80\"}, "
+				+ "{\"view\": \"text\", \"height\" : 50, \"width\": 230, \"value\": \"РЅРµ РѕРїСЂРµРґРµР»РµРЅ РєР»Р°СЃСЃ СЃРµСЃСЃРёРё...\"}, "
 				+ "{}]}, {}]}";
 		return sForm;
 	}
