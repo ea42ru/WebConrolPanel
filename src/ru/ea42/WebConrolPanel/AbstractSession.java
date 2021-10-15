@@ -14,17 +14,17 @@ public abstract class AbstractSession {
 	public Date lastTime;
 
 	public String reqParse(JsonObject jsRoot, String sType) {
-		// обновленеие компанента
+		// РѕР±РЅРѕРІР»РµРЅРµРёРµ РєРѕРјРїР°РЅРµРЅС‚Р°
 		if (sType.equals("RefWidget")) {
 			return absRefWidget(jsRoot);
 		}
 
-		// цикличное обновленеие экрана
+		// С†РёРєР»РёС‡РЅРѕРµ РѕР±РЅРѕРІР»РµРЅРµРёРµ СЌРєСЂР°РЅР°
 		if (sType.equals("ReqQv")) {
 			return quReqQv(jsRoot);
 		}
 
-		// методы из дочерних классов
+		// РјРµС‚РѕРґС‹ РёР· РґРѕС‡РµСЂРЅРёС… РєР»Р°СЃСЃРѕРІ
 		return sesReqParse(jsRoot, sType);
 	}
 
@@ -115,9 +115,9 @@ public abstract class AbstractSession {
 
 	public abstract String sesReqParse(JsonObject jsRoot, String sType);
 
-	// получить значение из очереди обновления экрана
+	// РїРѕР»СѓС‡РёС‚СЊ Р·РЅР°С‡РµРЅРёРµ РёР· РѕС‡РµСЂРµРґРё РѕР±РЅРѕРІР»РµРЅРёСЏ СЌРєСЂР°РЅР°
 	private String quReqQv(JsonObject jsRoot) {
-		// сейчас просто обновление времени на экране
+		// СЃРµР№С‡Р°СЃ РїСЂРѕСЃС‚Рѕ РѕР±РЅРѕРІР»РµРЅРёРµ РІСЂРµРјРµРЅРё РЅР° СЌРєСЂР°РЅРµ
 		JsonObject com = new JsonObject();
 		com.addProperty("command", "RefWidget");
 		com.addProperty("id", "time");
@@ -127,7 +127,7 @@ public abstract class AbstractSession {
 		return OkMes(com);
 	}
 
-	// ответ - ошибка
+	// РѕС‚РІРµС‚ - РѕС€РёР±РєР°
 	public String ErrorMes(int nom, String mes) {
 		JsonObject jsResp = new JsonObject();
 		jsResp.addProperty("result", "");
@@ -137,7 +137,7 @@ public abstract class AbstractSession {
 		return jsResp.toString();
 	}
 
-	// ответ - Ok!
+	// РѕС‚РІРµС‚ - Ok!
 	public String OkMes(JsonObject com) {
 		JsonObject jsResp = new JsonObject();
 		jsResp.add("result", com);
@@ -146,10 +146,10 @@ public abstract class AbstractSession {
 		return jsResp.toString();
 	}
 
-	// ответ - уведомление принято
+	// РѕС‚РІРµС‚ - СѓРІРµРґРѕРјР»РµРЅРёРµ РїСЂРёРЅСЏС‚Рѕ
 	public String eventOk() {
 		JsonObject com = new JsonObject();
-		com.addProperty("event", "Ок");
+		com.addProperty("event", "РћРє");
 		return OkMes(com);
 	}
 }
