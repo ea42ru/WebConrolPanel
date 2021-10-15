@@ -37,7 +37,7 @@ public class DataHandler extends AbstractHandler {
 
 	public SessionManager sm;
 
-	// принимаем запрос
+	// РїСЂРёРЅРёРјР°РµРј Р·Р°РїСЂРѕСЃ
 	public synchronized void handle(String target, Request baseRequest, HttpServletRequest request,
 			HttpServletResponse response) throws IOException, ServletException {
 		int ch;
@@ -64,9 +64,9 @@ public class DataHandler extends AbstractHandler {
 		baseRequest.setHandled(true);
 	}
 
-	// парсим запрос
+	// РїР°СЂСЃРёРј Р·Р°РїСЂРѕСЃ
 	public String ReqParse(String StrReq) {
-		// запрос JSON?
+		// Р·Р°РїСЂРѕСЃ JSON?
 		if (StrReq.equals("")) {
 			return ErrorMes(100, "Request not JSON");
 		}
@@ -78,7 +78,7 @@ public class DataHandler extends AbstractHandler {
 			return ErrorMes(100, "Request not JSON");
 		}
 
-		// запрос верного формата?
+		// Р·Р°РїСЂРѕСЃ РІРµСЂРЅРѕРіРѕ С„РѕСЂРјР°С‚Р°?
 		String sSes = "";
 		try {
 			sSes = jsRoot.get("session").getAsString();
@@ -86,7 +86,7 @@ public class DataHandler extends AbstractHandler {
 			return ErrorMes(101, "Bad format JSON - not 'session'");
 		}
 
-		// current пустой?
+		// current РїСѓСЃС‚РѕР№?
 		int sCur = 0;
 		try {
 			sCur = jsRoot.get("current").getAsInt();
@@ -97,7 +97,7 @@ public class DataHandler extends AbstractHandler {
 			return ErrorMes(110, "Bad format JSON - current = 0");
 		}
 
-		// проверка last
+		// РїСЂРѕРІРµСЂРєР° last
 		int sLast = 0;
 		try {
 			sLast = jsRoot.get("last").getAsInt();
@@ -109,7 +109,7 @@ public class DataHandler extends AbstractHandler {
 			return goRedirect();
 		}
 
-		// маршрутизация по методам
+		// РјР°СЂС€СЂСѓС‚РёР·Р°С†РёВ¤ РїРѕ РјРµС‚РѕРґР°Рј
 		String sType = "";
 		try {
 			sType = jsRoot.get("method").getAsString();
@@ -117,23 +117,23 @@ public class DataHandler extends AbstractHandler {
 			return ErrorMes(104, "Bad format JSON - not 'method'");
 		}
 
-		// нажата кнопка обновить или закрыть
+		// РЅР°Р¶Р°С‚Р° РєРЅРѕРїРєР° РѕР±РЅРѕРІРёС‚СЊ РёР»Рё Р·Р°РєСЂС‹С‚СЊ
 		if (sType.equals("ScrinStop")) {
 			ses.inEnterMode = true;
 			return eventOk();
 		}
 
-		// пересылаем запрос в конкретную сессию
+		// РїРµСЂРµСЃС‹Р»Р°РµРј Р·Р°РїСЂРѕСЃ РІ РєРѕРЅРєСЂРµС‚РЅСѓСЋ СЃРµСЃСЃРёСЋ
 		String sReq = ses.reqParse(jsRoot, sType);
 		if (!sReq.equals("")) {
 			return sReq;
 		}
 
-		// неизвестный тип запроса
+		// РЅРµРёР·РІРµСЃС‚РЅС‹Р№ С‚РёРї Р·Р°РїСЂРѕСЃР°
 		return ErrorMes(111, "Unknown request method");
 	}
 
-	// ответ - ошибка
+	// РѕС‚РІРµС‚ - РѕС€РёР±РєР°
 	public String ErrorMes(int nom, String mes) {
 		JsonObject jsResp = new JsonObject();
 		jsResp.addProperty("result", "");
@@ -143,7 +143,7 @@ public class DataHandler extends AbstractHandler {
 		return jsResp.toString();
 	}
 
-	// ответ - Ok!
+	// РѕС‚РІРµС‚ - Ok!
 	public String OkMes(JsonObject com) {
 		JsonObject jsResp = new JsonObject();
 		jsResp.add("result", com);
@@ -152,14 +152,14 @@ public class DataHandler extends AbstractHandler {
 		return jsResp.toString();
 	}
 
-	// ответ - уведомление принято
+	// РѕС‚РІРµС‚ - СѓРІРµРґРѕРјР»РµРЅРёРµ РїСЂРёРЅВ¤С‚Рѕ
 	public String eventOk() {
 		JsonObject com = new JsonObject();
-		com.addProperty("event", "Ок");
+		com.addProperty("event", "СњРє");
 		return OkMes(com);
 	}
 
-	// перенаправить клиента на другую сессию
+	// РїРµСЂРµРЅР°РїСЂР°РІРёС‚СЊ РєР»РёРµРЅС‚Р° РЅР° РґСЂСѓРіСѓСЋ СЃРµСЃСЃРёСЋ
 	public String goRedirect() {
 		JsonObject com = new JsonObject();
 		com.addProperty("command", "Redirect");
