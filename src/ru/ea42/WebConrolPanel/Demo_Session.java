@@ -15,7 +15,7 @@ public class Demo_Session extends AbstractSession {
 	}
 
 	public Ui_Abstract createFormLogin() {
-		Ui_Abstract form = new UiWindow(this, "Авторизуйтесь (вход: пароль = логин)");
+		Ui_Abstract form = new UiWindow(this, "РђРІС‚РѕСЂРёР·СѓР№С‚РµСЃСЊ (РІС…РѕРґ: РїР°СЂРѕР»СЊ = Р»РѕРіРёРЅ)");
 		form.addParam("position", "center");
 		form.addParam("move", true);
 		form.addParam("hidden", false);
@@ -24,18 +24,18 @@ public class Demo_Session extends AbstractSession {
 		UiLayout body = new UiLayout(form, false);
 		body.addParam("padding", 15);
 
-		UiText login = new UiText(body, "Имя");
+		UiText login = new UiText(body, "В»РјВ¤");
 		login.Value = "ea42@mail.ru";
 
-		UiText pass = new UiText(body, "Пароль");
+		UiText pass = new UiText(body, "С•Р°СЂРѕР»СЊ");
 		pass.Value = "123";
 		pass.addParam("type", "password");
 
 		UiLayout lay2 = new UiLayout(body, true);
 		lay2.addParam("margin", 15);
-		UiButton bot1 = new UiButton(lay2, "Вход");
+		UiButton bot1 = new UiButton(lay2, "В¬С…РѕРґ");
 		bot1.addParam("type", "form");
-		UiButton bot2 = new UiButton(lay2, "Отмена");
+		UiButton bot2 = new UiButton(lay2, "СњС‚РјРµРЅР°");
 
 		UiLabel labTime = new UiLabel(body, "");
 		labTime.id = "time";
@@ -46,7 +46,7 @@ public class Demo_Session extends AbstractSession {
 	public Ui_Abstract createFormMain() {
 		Ui_Abstract form = new UiForm(this);
 		form.addParam("padding", 460);
-		new UiLabel(form, "потяни и ТЫ ВНУТРИ!!!");
+		new UiLabel(form, "РїРѕС‚СЏРЅРё Рё С‚С‹ РІРЅСѓС‚СЂРё!!!");
 		return form;
 	}
 
