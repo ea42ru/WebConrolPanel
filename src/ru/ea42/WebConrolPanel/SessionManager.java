@@ -1,6 +1,6 @@
 package ru.ea42.WebRemoteControl;
 
-// дописать циклический поиск просроченных сессий
+// РґРѕРїРёСЃР°С‚СЊ С†РёРєР»РёС‡РµСЃРєРёР№ РїРѕРёСЃРє РїСЂРѕСЃСЂРѕС‡РµРЅРЅС‹С… СЃРµСЃСЃРёР№
 
 import java.util.Date;
 import java.util.HashMap;
@@ -9,8 +9,8 @@ import java.util.UUID;
 
 public class SessionManager {
 	public Map<String, AbstractSession> ls = new HashMap<String, AbstractSession>();
-	public int MaxPack = 4; // максимальное количество потерянных за раз пакетов.
-	public int MaxTime = 200000; // время жизни сессии в миллисек.
+	public int MaxPack = 4; // РјР°РєСЃРёРјР°Р»СЊРЅРѕРµ РєРѕР»РёС‡РµСЃС‚РІРѕ РїРѕС‚РµСЂСЏРЅРЅС‹С… Р·Р° СЂР°Р· РїР°РєРµС‚РѕРІ.
+	public int MaxTime = 200000; // РІСЂРµРјСЏ Р¶РёР·РЅРё СЃРµСЃСЃРёРё РІ РјРёР»Р»РёСЃРµРє.
 	public Class<?> SessionClass = null;
 
 	public AbstractSession getNewSession() {
@@ -41,7 +41,7 @@ public class SessionManager {
 			return ses;
 		}
 
-		// удаляем просроченные сессии, чтобы их сожрал сборщик мусора
+		// СѓРґР°Р»СЏРµРј РїСЂРѕСЃСЂРѕС‡РµРЅРЅС‹Рµ СЃРµСЃСЃРёРё, С‡С‚РѕР±С‹ РёС… СЃРѕР¶СЂР°Р» СЃР±РѕСЂС‰РёРє РјСѓСЃРѕСЂР°
 		if (ses != null) {
 			if (ses.id == "") {
 				ls.remove(sSes);
@@ -51,23 +51,23 @@ public class SessionManager {
 	}
 
 	private boolean gudSession(AbstractSession ses, String sSes, int sLast, int sCur) {
-		// не обозначена сессия на клиенте
+		// РЅРµ РѕР±РѕР·РЅР°С‡РµРЅР° СЃРµСЃСЃРёСЏ РЅР° РєР»РёРµРЅС‚Рµ
 		if (sSes.equals("")) {
 			return false;
 		}
 
-		// на сервере нет сессии с таким id
+		// РЅР° СЃРµСЂРІРµСЂРµ РЅРµС‚ СЃРµСЃСЃРёРё СЃ С‚Р°РєРёРј id
 		if (ses == null) {
 			return false;
 		}
 
-		// сессия просрочена
+		// СЃРµСЃСЃРёСЏ РїСЂРѕСЃСЂРѕС‡РµРЅР°
 		if ((new Date().getTime() - ses.lastTime.getTime()) > MaxTime) {
 			ses.id = "";
 			return false;
 		}
 
-		// режим начала работы сессии
+		// СЂРµР¶РёРј РЅР°С‡Р°Р»Р° СЂР°Р±РѕС‚С‹ СЃРµСЃСЃРёРё
 		if (sLast == 0) {
 			if (ses.inEnterMode) {
 				ses.inEnterMode = false;
@@ -76,15 +76,15 @@ public class SessionManager {
 			return false;
 		}
 
-		// совпадает номер последнего пакета на клиенте и сервере
-		// с учетом максимальных потерь пакетов MaxPack
+		// СЃРѕРІРїР°РґР°РµС‚ РЅРѕРјРµСЂ РїРѕСЃР»РµРґРЅРµРіРѕ РїР°РєРµС‚Р° РЅР° РєР»РёРµРЅС‚Рµ Рё СЃРµСЂРІРµСЂРµ
+		// СЃ СѓС‡РµС‚РѕРј РјР°РєСЃРёРјР°Р»СЊРЅС‹С… РїРѕС‚РµСЂСЊ РїР°РєРµС‚РѕРІ MaxPack
 		if (sLast >= ses.lastPack) {
 			if (sLast <= (ses.lastPack + MaxPack)) {
 				return true;
 			}
 		}
 
-		// допроверим переход через 0 при >9999
+		// РґРѕРїСЂРѕРІРµСЂРёРј РїРµСЂРµС…РѕРґ С‡РµСЂРµР· 0 РїСЂРё >9999
 		if (sLast >= 1) {
 			if (sLast <= (ses.lastPack - 10000 + MaxPack)) {
 				return true;
