@@ -6,7 +6,7 @@ import org.eclipse.jetty.server.handler.ContextHandler;
 import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.server.handler.ResourceHandler;
 
-// синглетон веб интрефейса управления 
+// СЃРёРЅРіР»РµС‚РѕРЅ РІРµР± РёРЅС‚СЂРµС„РµР№СЃР° СѓРїСЂР°РІР»РµРЅРёСЏ 
 public class embWRC {
 	private static embWRC instance;
 
@@ -19,7 +19,7 @@ public class embWRC {
 	private embWRC() {
 	}
 
-	// переменные
+	// РїРµСЂРµРјРµРЅРЅС‹Рµ
 	public static int Port = 8282;
 	public static Server JettyServer;
 	public static HandlerList hl;
@@ -32,28 +32,28 @@ public class embWRC {
 		connector.setPort(Port);
 		JettyServer.addConnector(connector);
 
-		// добавим хендлер
+		// РґРѕР±Р°РІРёРј С…РµРЅРґР»РµСЂ
 		// ResourceHandler ResHandl = new ResourceHandler();
 		// ResHandl.setDirectoriesListed(false);
 		// ResHandl.setWelcomeFiles(new String[] { "index.html" });
 		// ResHandl.setResourceBase(".");
 		// JettyServer.setHandler(ResHandl);
 
-		// данные
+		// РґР°РЅРЅС‹Рµ
 		ContextHandler dataHandl = new ContextHandler();
 		dataHandl.setContextPath("/data");
 		DataHandler datah = new DataHandler();
 		datah.sm = sm;
 		dataHandl.setHandler(datah);
 
-		// статика
+		// СЃС‚Р°С‚РёРєР°
 		ContextHandler statHandl = new ContextHandler();
 		statHandl.setContextPath(".");
 		statHandl.setResourceBase("./web/");
 		// statHandl.setWelcomeFiles(new String[] { "index.html" });
 		statHandl.setHandler(new ResourceHandler());
 
-		// страница приложения
+		// СЃС‚СЂР°РЅРёС†Р° РїСЂРёР»РѕР¶РµРЅРёСЏ
 		// ContextHandler htmlHandl= new ContextHandler();
 		// htmlHandl.setContextPath(".");
 		// htmlHandl.setHandler(new HtmlHandler());
