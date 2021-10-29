@@ -46,7 +46,7 @@ public class Demo_Session extends AbstractSession {
 	public Ui_Abstract createFormMain() {
 		Ui_Abstract form = new UiForm(this);
 		form.addParam("padding", 460);
-		new UiLabel(form, "потяни и ты внутри!!!");
+		new UiLabel(form, "ты внутри!!!");
 		return form;
 	}
 
