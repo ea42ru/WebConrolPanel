@@ -24,18 +24,18 @@ public class Demo_Session extends AbstractSession {
 		UiLayout body = new UiLayout(form, false);
 		body.addParam("padding", 15);
 
-		UiText login = new UiText(body, "»м¤");
+		UiText login = new UiText(body, "Логин");
 		login.Value = "ea42@mail.ru";
 
-		UiText pass = new UiText(body, "ѕароль");
+		UiText pass = new UiText(body, "Пароль");
 		pass.Value = "123";
 		pass.addParam("type", "password");
 
 		UiLayout lay2 = new UiLayout(body, true);
 		lay2.addParam("margin", 15);
-		UiButton bot1 = new UiButton(lay2, "¬ход");
+		UiButton bot1 = new UiButton(lay2, "Вход");
 		bot1.addParam("type", "form");
-		UiButton bot2 = new UiButton(lay2, "ќтмена");
+		UiButton bot2 = new UiButton(lay2, "Отмена");
 
 		UiLabel labTime = new UiLabel(body, "");
 		labTime.id = "time";
